@@ -166,6 +166,31 @@ function Dashboard() {
                   stroke="#82ca9d"
                   activeDot={{ r: 8 }}
                 />
+              </LineChart>
+            </ResponsiveContainer>
+          )}
+        </div>
+
+        <h1 class=" mt-24 mb-2 font-bold text-lg underline">
+          Predicting probable money savings :
+        </h1>
+        <div className="flex flex-row items-center  justify-center  rounded-2xl my-4 p-2 bg-yellow-100 h-4/6">
+          {data && (
+            <ResponsiveContainer width="75%" height="75%">
+              <LineChart
+                width={500}
+                height={300}
+                data={data}
+                margin={{
+                  top: 5,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
                 <Line
                   type="monotone"
                   dataKey="money spent"
