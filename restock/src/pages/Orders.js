@@ -7,7 +7,7 @@ function Orders() {
         {name:"order2", price:"123", date:"Yesterday"}
     ]
 
-    return(
+    return (
         <div>
             <User/>
             <table className="items-center bg-transparent w-full border-collapse ">
@@ -25,7 +25,7 @@ function Orders() {
                         )
                     })}
                 </tbody>
-        </table>
+            </table>
         </div>
     )
 }
