@@ -9,32 +9,32 @@ function OrderInfo() {
     let orders = [
         {
             name: "order1", price: "123", date: "Yesterday", id: "123456789", products: [
-                { name: "Product1", seller: "ma couille", quantity: "1", price: "120" },
-                { name: "Product1", seller: "ma couille", quantity: "1", price: "120" },
-                { name: "Product1", seller: "ma couille", quantity: "1", price: "120" },
-                { name: "Product2", seller: "ma couille", quantity: "1", price: "120" }
+                { name: "Product1", seller: "superSeller", quantity: "1", price: "120" },
+                { name: "Product1", seller: "superSeller", quantity: "1", price: "120" },
+                { name: "Product1", seller: "superSeller", quantity: "1", price: "120" },
+                { name: "Product2", seller: "superSeller", quantity: "1", price: "120" }
             ]
         }, {
             name: "order1", price: "123", date: "Yesterday", id: "123456789", products: [
-                { name: "Product1", seller: "ma couille", quantity: "1", price: "120" },
-                { name: "Product1", seller: "ma couille", quantity: "1", price: "120" },
-                { name: "Product1", seller: "ma couille", quantity: "1", price: "120" },
-                { name: "Product2", seller: "ma couille", quantity: "1", price: "120" }
+                { name: "Product1", seller: "superSeller", quantity: "1", price: "120" },
+                { name: "Product1", seller: "superSeller", quantity: "1", price: "120" },
+                { name: "Product1", seller: "superSeller", quantity: "1", price: "120" },
+                { name: "Product2", seller: "superSeller", quantity: "1", price: "120" }
             ]
         }, {
             name: "order1", price: "123", date: "Yesterday", id: "123456789", products: [
-                { name: "Product1", seller: "ma couille", quantity: "1", price: "120" },
-                { name: "Product1", seller: "ma couille", quantity: "1", price: "120" },
-                { name: "Product1", seller: "ma couille", quantity: "1", price: "120" },
-                { name: "Product2", seller: "ma couille", quantity: "1", price: "120" }
+                { name: "Product1", seller: "superSeller", quantity: "1", price: "120" },
+                { name: "Product1", seller: "superSeller", quantity: "1", price: "120" },
+                { name: "Product1", seller: "superSeller", quantity: "1", price: "120" },
+                { name: "Product2", seller: "superSeller", quantity: "1", price: "120" }
             ]
         },
         {
             name: "order2", price: "123", date: "Yesterday", id: "987654321", products: [
-                { name: "Product1", seller: "ma couille", quantity: "1", price: "120" },
-                { name: "Product1", seller: "ma couille", quantity: "1", price: "120" },
-                { name: "Product1", seller: "ma couille", quantity: "1", price: "120" },
-                { name: "Product2", seller: "ma couille", quantity: "1", price: "120" }
+                { name: "Product1", seller: "superSeller", quantity: "1", price: "120" },
+                { name: "Product1", seller: "superSeller", quantity: "1", price: "120" },
+                { name: "Product1", seller: "superSeller", quantity: "1", price: "120" },
+                { name: "Product2", seller: "superSeller", quantity: "1", price: "120" }
             ]
         }
     ]
