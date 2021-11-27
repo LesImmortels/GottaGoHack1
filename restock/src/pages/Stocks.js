@@ -53,6 +53,7 @@ function Stocks() {
                             <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                                 Quantity
                             </th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -176,13 +177,20 @@ function Stocks() {
                                                                     />
                                                                 </div>
                                                                 <div className="w-full px-3 py-1">
-                                                                    <button
-                                                                        type="submit"
+                                                                    <Popover.Panel>
+                                                                        {({ close }) => (
+                                                                        <button type="submit"
                                                                         value="Submit"
-                                                                        className="text-sm font-semibold text-white bg-green-500 px-4 py-2 shadow rounded"
-                                                                    >
-                                                                        Add Product
-                                                                    </button>
+                                                                        className="text-sm font-semibold text-white bg-green-500 px-4 py-2 shadow rounded" 
+                                                                            onClick={async () => {
+                                                                            await fetch('/accept-terms', { method: 'POST' })
+                                                                            close()
+                                                                            }}
+                                                                        >
+                                                                            Add Product
+                                                                        </button>
+                                                                        )}
+                                                                    </Popover.Panel>
                                                                 </div>
                                                             </form>
                                                         </div>
