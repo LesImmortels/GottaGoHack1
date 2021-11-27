@@ -32,7 +32,7 @@ class Firebase {
         const ref = this.firestore.collection("stocks").doc(firebase.auth().currentUser.uid);
         const snapshot = await ref.get();
         if (snapshot.exists) {
-            return snapshot.data().stocks;
+            return snapshot.data().products;
         }
         return [];
     }
@@ -81,6 +81,28 @@ class Firebase {
         return user.reauthenticateWithCredential(cred);
     };
 
+    findArrayElementByTitle(array, title) {
+        return array.findIndex((element) => {
+          return element.name === title;
+        })
+      }
+
+    async changeStock({name, increment = 1}) {
+        
+        const userRef = this.firestore.doc(`stocks/${firebase.auth().currentUser.uid}`);
+        const data = await userRef.get().products;
+        let i = this.findArrayElementByTitle(data, name);
+        data[i].quantity += increment;
+
+        try {
+            await userRef.set({data})
+        } catch (err) {
+            console.log(err);
+
+        }
+        return userRef
+    }
+
     async addProductToStock({name, price, url, quantity}) {
 
         const userRef = this.firestore.doc(`stocks/${firebase.auth().currentUser.uid}`);
@@ -97,7 +119,19 @@ class Firebase {
                 console.log(err)
             }
         } else {
+            try {
+                await userRef.update({
+                    products: firebase.firestore.FieldValue.arrayUnion({
+                        name,
+                        price,
+                        quantity,
+                        url,
+                    })
+                })
+            } catch (err) {
+                console.log(err);
 
+            }
         }
         return userRef;
     }
