@@ -1,10 +1,17 @@
 import './App.css';
-import Orders from './pages/Orders';
-import OrderInfo from './pages/OrderInfo';
+import {Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
-    <Orders/>
+    <div className="App">
+      {/* Side bar here */}
+      <div>
+        <Switch>
+          {/* <Route exact path="/" component={Home}/> */}
+
+        </Switch>
+      </div>
+    </div>
   );
 }
 
