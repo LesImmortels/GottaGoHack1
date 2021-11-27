@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
     withGoogleMap,
     withScriptjs,
     GoogleMap,
     Marker,
-    InfoWindow
 } from "react-google-maps";
 import mapStyles from "./mapStyles";
 
@@ -15,6 +14,19 @@ function Mymap() {
             defaultCenter={{ lat: 48.815096, lng: 2.362805 }}
             defaultOptions={{ styles: mapStyles.hiding }}
         >
+            <Marker
+                position={{
+                    lat: 48.815096,
+                    lng: 2.362805
+                }}
+            /*onClick={() => {
+                setSelectedPark(park);
+            }}*/
+            /*icon={{
+                url: `/Usual Icon.webp`,
+                scaledSize: new window.google.maps.Size(50, 50)
+            }}*/
+            />
         </GoogleMap>
     );
 }
@@ -34,36 +46,3 @@ export default function Map() {
         </div>
     );
 }
-
-
-
-
-
-
-
-/*
-
-import React from "react";
-import { GoogleMap, withScriptjs, withGoogleMap } from "react-google-map";
-
-function Mymap() {
-    return (
-        <GoogleMap
-            defaultZoom={10}
-            defaultCenter={{ lat: 12, lng: 12 }}
-        />
-    );
-}
-
-
-const WrappedMap = withScriptjs(withGoogleMap(Mymap));
-
-function Map() {
-
-    return <div>
-        <WrappedMap googleMapURL={``} />
-    </div>
-}
-
-
-export default Map;*/

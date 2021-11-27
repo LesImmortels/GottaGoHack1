@@ -1,9 +1,9 @@
-import { useEffect } from "react";
+//import { useEffect } from "react";
 import firebaseInstance from "../services/firebase";
 
 function StockProduct({ name, link, quantity }) {
-    function handleIncrement(increment=1) {
-        firebaseInstance.changeStock({name, increment})
+    function handleIncrement(increment = 1) {
+        firebaseInstance.changeStock({ name, increment })
     }
     return (
         <tr class="even:bg-gray-100">

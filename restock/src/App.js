@@ -5,24 +5,24 @@ import Sidebar from "./components/Sidebar";
 import Orders from "./pages/Orders";
 import Stocks from "./pages/Stocks";
 import Maps from './pages/Maps';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch/*, useSelector */ } from "react-redux";
 import { useEffect } from "react";
 import { checkUserSession } from "./redux/User/user.actions";
-import WithAuth from "./utils/withAuth";
+//import WithAuth from "./utils/withAuth";
 import MemberAuth from "./utils/memberAuth";
 import UserAuth from './utils/userAuth';
 import OrderInfo from './pages/OrderInfo';
-import { isElementOfType } from 'react-dom/test-utils';
+//import { isElementOfType } from 'react-dom/test-utils';
 import User from './components/User';
 
-const mapState = (state) => ({
+/*const mapState = (state) => ({
   currentUser: state.user.currentUser,
-});
+});*/
 
 function App(props) {
 
   const dispatch = useDispatch();
-  const { currentUser } = useSelector(mapState);
+  //const { currentUser } = useSelector(mapState);
 
   useEffect(() => {
     dispatch(checkUserSession());
