@@ -1,17 +1,17 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Navigate/*, useNavigate*/ } from "react-router";
+import { Navigate/*, useNavigate */ } from "react-router";
 
 const mapState = ({ user }) => ({
     currentUser: user.currentUser,
 });
 
-const useMemberAuth = (props) => {
+const useUserAuth = (props) => {
     const { currentUser } = useSelector(mapState);
     //const history = useNavigate();
 
     useEffect(() => {
-        if (!isMember(currentUser)) {
+        if (!isUser(currentUser)) {
             return (
                 <Navigate to={"/"} />
             )
@@ -21,11 +21,11 @@ const useMemberAuth = (props) => {
     return currentUser;
 };
 
-export const isMember = (currentUser) => {
+export const isUser = (currentUser) => {
     if (!currentUser || !Array.isArray(currentUser.roles)) return false;
     const { roles } = currentUser;
-    return !!(roles.includes("member") || roles.includes("admin"));
+    return !!(roles.includes("User") || roles.includes("admin"));
 
 };
 
-export default useMemberAuth;
+export default useUserAuth;

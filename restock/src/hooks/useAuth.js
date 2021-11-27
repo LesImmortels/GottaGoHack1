@@ -1,11 +1,13 @@
 import { useSelector } from "react-redux";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import firebase from "firebase/compat/app";
 
 const mapState = ({ user }) => ({
     currentUser: !!user.currentUser,
 });
+
+
 
 const useAuth = () => {
     const { currentUser } = useSelector(mapState);
@@ -35,7 +37,7 @@ const useAuth = () => {
 
     useEffect(() => {
 
-        if (!authentication.initializing && !authentication.authenticated ) {
+        if (!authentication.initializing && !authentication.authenticated) {
             history.push("/login");
         }
 
