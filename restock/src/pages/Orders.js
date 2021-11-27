@@ -8,17 +8,21 @@ function Orders() {
 
     return(
         <div className="px-16">
-            <div className="flex justify-between">
-                <p>Name</p>
-                <p>Price</p>
-                <p>Date</p>
-            </div>
-            {orders.map((order) => {
-                return (
-                    <Order order={order}/>
-                )
-            })
-            }
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {orders.map((order) => {
+                    return (
+                        <Order order={order}/>
+                    )
+                })
+                }
+            </tbody>
         </div>
     )
 }

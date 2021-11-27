@@ -1,12 +1,12 @@
 function ProductInfo({product}) {
     
     return (
-        <div className="flex justify-between">
-            <div>{product.name}</div>
-            <div>{product.seller}</div>
-            <div>{product.quantity}</div>
-            <div>{product.price}</div>
-        </div>
+        <tr> 
+            <td>{product.name}</td>
+            <td>{product.seller}</td>
+            <td>{product.quantity}</td>
+            <td>{product.price}</td>
+        </tr>
     )
 }
 
