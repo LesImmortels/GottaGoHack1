@@ -1,21 +1,16 @@
 import './App.css';
+import {Switch, Route} from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Our Website will be the shit
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* Side bar here */}
+      <div>
+        <Switch>
+          {/* <Route exact path="/" component={Home}/> */}
+
+        </Switch>
+      </div>
     </div>
   );
 }
