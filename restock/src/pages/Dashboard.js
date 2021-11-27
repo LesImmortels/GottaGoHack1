@@ -24,11 +24,16 @@ function Dashboard() {
 
     useEffect(() => {
         let data = firebaseInstance.getUserDashboard(currentUser.id);
-        data.then((res) => setData(res.data().data))
+        data.then((res) => {
+            if (typeof res.data() != 'undefined') {
+                setData(res.data().data)
+            }
+        })
     }, [])
     return (
-        <><h1 class="text-center mt-24 mb-2 font-bold underline text-lg">I like trains</h1><div class="flex flex-row items-center  justify-center shadow rounded-xl m-24 mt-0 p-2 bg-gray-50 h-4/6">
-            <ResponsiveContainer width="75%" height="75%">
+        <><h1 class="text-center mt-24 mb-2 font-bold underline text-lg">I like trains</h1>
+            <div class="flex flex-row items-center  justify-center shadow rounded-xl m-24 mt-0 p-2 bg-gray-100 h-4/6">
+            {data && (<ResponsiveContainer width="75%" height="75%">
                 <LineChart
                     width={500}
                     height={300}
@@ -40,16 +45,17 @@ function Dashboard() {
                         bottom: 5,
                     }}
                 >
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" tick={renderCustomAxisTick} />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="money saved" stroke="#8884d8" activeDot={{ r: 8 }} />
-                    <Line type="monotone" dataKey="waste" stroke="#82ca9d" />
-                    <Line type="monotone" dataKey="total costs evolution" stroke="#00fafa" />
+                    <CartesianGrid strokeDasharray="3 3"/>
+                    <XAxis dataKey="date" tick={renderCustomAxisTick}/>
+                    <YAxis/>
+                    <Tooltip/>
+                    <Legend/>
+                    <Line type="monotone" dataKey="money saved" stroke="#8884d8" activeDot={{r: 8}}/>
+                    <Line type="monotone" dataKey="waste" stroke="#82ca9d"/>
+                    <Line type="monotone" dataKey="total costs evolution" stroke="#00fafa"/>
                 </LineChart>
-            </ResponsiveContainer>
+            </ResponsiveContainer>)
+            }
         </div></>
     )
 }
