@@ -1,19 +1,21 @@
 import './App.css';
-import Orders from './pages/Orders';
 import {Route, Routes } from 'react-router-dom';
-import Order from './components/Order';
-import OrderInfo from './pages/OrderInfo';
+import Dashboard from './pages/Dashboard';
+import Sidebar from "./components/Sidebar";
+import Orders from "./pages/Orders";
+import Stocks from "./pages/Stocks";
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex flex-row h-screen">
       {/* Side bar here */}
-      <div>
+        <Sidebar/>
+      <div className="w-full">
         <Routes>
           {/* <Route exact path="/" component={Home}/> */}
-
-          <Route exact path="/orders" element={<Orders/>} />
-          <Route exact path="/orders/orderinfo" element={<OrderInfo/>} />
+            <Route exact path="/stock" element={<Stocks/>}/>
+            <Route exact path="/orders" element={<Orders/>}/>
+          <Route exact path="/" element={<Dashboard/>} />
         </Routes>
       </div>
     </div>
