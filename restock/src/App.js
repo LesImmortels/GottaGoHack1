@@ -28,7 +28,7 @@ function App(props) {
         <Routes>
           {/* <Route exact path="/" component={Home}/> */}
             <Route exact path="/stock" element={<Stocks/>}/>
-            <Route exact path="/orders" element={<Orders/>}/>
+            <Route exact path="/orders" element={<Orders user={currentUser}/>}/>
           <Route exact path="/" element={<Dashboard/>} />
         </Routes>
       </div>

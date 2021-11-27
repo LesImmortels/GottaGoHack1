@@ -1,7 +1,7 @@
 import Order from "../components/Order";
 import User from "../components/User";
 
-function Orders() {
+function Orders( { user }) {
     let orders = [
         {name:"order1", price:"123", date:"Yesterday"},
         {name:"order2", price:"123", date:"Yesterday"}
@@ -9,7 +9,7 @@ function Orders() {
 
     return (
         <div>
-            <User/>
+            <User user="user"/>
             <table className="items-center bg-transparent w-full border-collapse ">
                 <thead className="bg-gray-200">
                     <tr>
