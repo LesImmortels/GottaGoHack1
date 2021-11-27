@@ -7,7 +7,7 @@ function Stocks() {
     ];
     return (
         <table class="items-center bg-transparent w-full border-collapse">
-            <thead class="bg-green-600 text-white shadow-lg">
+            <thead class="bg-gradient-to-r from-green-400 to-green-500 text-white shadow-lg">
                 <tr>
                     <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">Name</th>
                     <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">Link</th>
