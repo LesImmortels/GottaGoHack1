@@ -33,7 +33,7 @@ class Firebase {
         const ref = this.firestore.collection("stocks").doc(firebase.auth().currentUser.uid);
         const snapshot = await ref.get();
         if (snapshot.exists) {
-            return snapshot.data().stocks;
+            return snapshot.data().products;
         }
         return [];
     }
@@ -47,19 +47,14 @@ class Firebase {
     };
 
     handleUserProfile = async ({ userAuth, additionalData }) => {
-        console.log(userAuth)
         if (!userAuth) return;
-        console.log(userAuth)
 
         const { uid } = userAuth;
 
 
         const userRef = this.firestore.doc(`users/${uid}`);
-        console.log(userRef);
         const snapshot = await userRef.get();
-        console.log(snapshot);
         if (!snapshot.exists) {
-            console.log(userAuth)
 
             const { displayName, email } = userAuth;
             const timestamp = new Date();
@@ -86,6 +81,62 @@ class Firebase {
         );
         return user.reauthenticateWithCredential(cred);
     };
+
+    findArrayElementByTitle(array, title) {
+        return array.findIndex((element) => {
+          return element.name === title;
+        })
+      }
+
+    async changeStock({name, increment = 1}) {
+        
+        const userRef = this.firestore.doc(`stocks/${firebase.auth().currentUser.uid}`);
+        const data = await (await userRef.get()).data().products;
+        let i = this.findArrayElementByTitle(data, name);
+        console.log(increment)
+        data[i].quantity = Number(data[i].quantity) + increment;
+
+        try {
+            await userRef.set({products: data})
+        } catch (err) {
+            console.log(err);
+
+        }
+        return userRef
+    }
+
+    async addProductToStock({name, price, url, quantity}) {
+
+        const userRef = this.firestore.doc(`stocks/${firebase.auth().currentUser.uid}`);
+        const snapshot = await userRef.get();
+        if (!snapshot.exists) {
+            try {
+                await userRef.set({products:[{
+                    name,
+                    price:Number(price),
+                    quantity:Number(quantity),
+                    url,
+                }]});
+            } catch (err) {
+                console.log(err)
+            }
+        } else {
+            try {
+                await userRef.update({
+                    products: firebase.firestore.FieldValue.arrayUnion({
+                        name,
+                        price:Number(price),
+                        quantity:Number(quantity),
+                        url,
+                    })
+                })
+            } catch (err) {
+                console.log(err);
+
+            }
+        }
+        return userRef;
+    }
 }
 
 const firebaseInstance = new Firebase();
