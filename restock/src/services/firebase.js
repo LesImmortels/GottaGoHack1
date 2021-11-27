@@ -19,6 +19,7 @@ class Firebase {
     }
     signOut = () => this.auth.signOut();
 
+    getUserDashboard = (id) => this.firestore.collection("dashboards").doc(id).get();
     getUserData = (id) => this.firestore.collection("users").doc(id).get();
     getOrders = async () => {
         const ref = this.firestore.collection("orders").doc(firebase.auth().currentUser.uid);
