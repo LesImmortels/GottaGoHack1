@@ -101,7 +101,8 @@ class Firebase {
     let i = this.findArrayElementByTitle(data, name);
     console.log(increment);
     data[i].quantity = Number(data[i].quantity) + increment;
-
+    if (data[i].quantity <= 0)
+        data.splice(i, 1);
     try {
       await userRef.set({ products: data });
     } catch (err) {
@@ -110,7 +111,21 @@ class Firebase {
     return userRef;
   }
 
+  async removeStock({name}) {
+    const userRef = this.firestore.doc(`stocks/${firebase.auth().currentUser.uid}`);
+    const data = await (await userRef.get()).data().products;
+    let i = this.findArrayElementByTitle(data, name);
+    data.splice(i, 1);
+    try {
+        await userRef.set({ products: data });
+    } catch (err) {
+        console.log(err);
+    }
+  }
+
   async addProductToStock({ name, price, url, quantity }) {
+    if (quantity == 0 || name ==="")
+        return;
     const userRef = this.firestore.doc(
       `stocks/${firebase.auth().currentUser.uid}`
     );
