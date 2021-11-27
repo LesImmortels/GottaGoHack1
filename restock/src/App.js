@@ -2,6 +2,7 @@ import './App.css';
 import {Route, Routes } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Sidebar from "./components/Sidebar";
+import Orders from "./pages/Orders";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
       <div className="w-full">
         <Routes>
           {/* <Route exact path="/" component={Home}/> */}
-
+            <Route exact path="/orders" element={<Orders/>}/>
           <Route exact path="/" element={<Dashboard/>} />
         </Routes>
       </div>
