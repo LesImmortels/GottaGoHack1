@@ -1,4 +1,5 @@
 import ProductInfo from "../components/ProductInfo";
+import User from "../components/User";
 
 function OrderInfo() {
    let products = [
