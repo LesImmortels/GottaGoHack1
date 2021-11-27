@@ -46,19 +46,14 @@ class Firebase {
     };
 
     handleUserProfile = async ({ userAuth, additionalData }) => {
-        console.log(userAuth)
         if (!userAuth) return;
-        console.log(userAuth)
 
         const { uid } = userAuth;
 
 
         const userRef = this.firestore.doc(`users/${uid}`);
-        console.log(userRef);
         const snapshot = await userRef.get();
-        console.log(snapshot);
         if (!snapshot.exists) {
-            console.log(userAuth)
 
             const { displayName, email } = userAuth;
             const timestamp = new Date();
@@ -85,6 +80,27 @@ class Firebase {
         );
         return user.reauthenticateWithCredential(cred);
     };
+
+    async addProductToStock({name, price, url, quantity}) {
+
+        const userRef = this.firestore.doc(`stocks/${firebase.auth().currentUser.uid}`);
+        const snapshot = await userRef.get();
+        if (!snapshot.exists) {
+            try {
+                await userRef.set({products:[{
+                    name,
+                    price,
+                    quantity,
+                    url,
+                }]});
+            } catch (err) {
+                console.log(err)
+            }
+        } else {
+
+        }
+        return userRef;
+    }
 }
 
 const firebaseInstance = new Firebase();
