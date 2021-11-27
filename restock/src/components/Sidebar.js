@@ -104,13 +104,14 @@ function Sidebar() {
                         </ul>
                     )}
                     {currentUser && isUser(currentUser) && (
-                        <ul className="space-y-4 t-4 font-semibold">
+                        <ul className="space-y-4 py-4 font-semibold">
                             <li>
                                 <Link
                                     to={"/map"}
                                     className="inline-flex hover:text-white transition"
                                 >
                                     <svg
+                                        className="w-6 h-6 mr-4"
                                         fill="currentColor"
                                         viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg"
