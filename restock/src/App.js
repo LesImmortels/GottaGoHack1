@@ -4,7 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Sidebar from "./components/Sidebar";
 import Orders from "./pages/Orders";
 import Stocks from "./pages/Stocks";
-import Map from "./components/Map";
+import { Map, Shops } from "./pages/Maps";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkUserSession } from "./redux/User/user.actions";
@@ -66,7 +66,7 @@ function App(props) {
             path="/map"
             element={
               <UserAuth>
-                <Map />
+                <Shops />
               </UserAuth>
             }
           />
