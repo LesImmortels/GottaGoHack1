@@ -53,6 +53,7 @@ function Stocks() {
                             <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                                 Quantity
                             </th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

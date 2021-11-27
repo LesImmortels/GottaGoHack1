@@ -88,6 +88,20 @@ class Firebase {
         })
       }
 
+      async removeStock({name}) {
+        const userRef = this.firestore.doc(`stocks/${firebase.auth().currentUser.uid}`);
+        const data = await(await userRef.get()).data().products;
+        let i = this.findArrayElementByTitle(data, name);
+        data.splice(i, 1);
+        try {
+            await userRef.set({products: data})
+        } catch (err) {
+            console.log(err);
+
+        }
+        return userRef;
+    }
+
     async changeStock({name, increment = 1}) {
         
         const userRef = this.firestore.doc(`stocks/${firebase.auth().currentUser.uid}`);
@@ -95,6 +109,9 @@ class Firebase {
         let i = this.findArrayElementByTitle(data, name);
         console.log(increment)
         data[i].quantity = Number(data[i].quantity) + increment;
+        if (data[i].quantity <= 0) {
+            data.splice(i, 1);
+        }
 
         try {
             await userRef.set({products: data})
@@ -106,6 +123,8 @@ class Firebase {
     }
 
     async addProductToStock({name, price, url, quantity}) {
+        if (quantity <= 0)
+            return;
 
         const userRef = this.firestore.doc(`stocks/${firebase.auth().currentUser.uid}`);
         const snapshot = await userRef.get();
