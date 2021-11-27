@@ -123,7 +123,7 @@ class Firebase {
     }
 
     async addProductToStock({name, price, url, quantity}) {
-        if (quantity <= 0)
+        if (quantity <= 0 || name === "")
             return;
 
         const userRef = this.firestore.doc(`stocks/${firebase.auth().currentUser.uid}`);
