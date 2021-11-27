@@ -1,8 +1,10 @@
-import firebase from "firebase/app";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth"
+import "firebase/compat/firestore"
 
 class Firebase {
     constructor() {
-        firebase.initializeApp({
+        this.firebase = firebase.initializeApp({
             apiKey: "AIzaSyApv6lEULCSSevyf0Tg7nD1BRPxzIGtF58",
             authDomain: "restauck.firebaseapp.com",
             projectId: "restauck",
@@ -13,8 +15,9 @@ class Firebase {
         });
         this.firestore = firebase.firestore();
         this.googleProvider = new firebase.auth.GoogleAuthProvider();
+        this.auth = firebase.auth();
     }
-
+    signOut = () => this.auth.signOut();
 
     getUserData = (id) => this.firestore.collection("users").doc(id).get();
     getOrders = async () => {
@@ -33,6 +36,53 @@ class Firebase {
         }
         return [];
     }
+    getUser = () => {
+        return new Promise((resolve, reject) => {
+            const unsubscribe = firebase.auth().onAuthStateChanged((userAuth) => {
+                unsubscribe();
+                resolve(userAuth);
+            }, reject);
+        });
+    };
+
+    handleUserProfile = async ({ userAuth, additionalData }) => {
+        console.log(userAuth)
+        if (!userAuth) return;
+        console.log(userAuth)
+
+        const { uid } = userAuth;
+
+
+        const userRef = this.firestore.doc(`users/${uid}`);
+        console.log(userRef);
+        const snapshot = await userRef.get();
+        console.log(snapshot);
+        if (!snapshot.exists) {
+            console.log(userAuth)
+
+            const { displayName, email } = userAuth;
+            const timestamp = new Date();
+
+            try {
+                await userRef.set({
+                    displayName,
+                    email,
+                    createdDate: timestamp,
+                    ...additionalData,
+                });
+            } catch (err) {}
+        }
+        return userRef;
+    };
+
+    reauthenticate = (currentPassword) => {
+        let user = firebase.auth().currentUser;
+        let cred = firebase.auth.EmailAuthProvider.credential(
+            user.email,
+            currentPassword
+        );
+        return user.reauthenticateWithCredential(cred);
+    };
 }
 
 const firebaseInstance = new Firebase();
