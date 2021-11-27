@@ -11,7 +11,7 @@ function SignInWithGoogle() {
     };
 
     return (
-        <button onClick={handleGoogleSignIn}>Sign in </button>
+        <button onClick={handleGoogleSignIn} className="font-semibold text-white bg-green-500 px-8 py-2 rounded-2xl shadow-md">Sign in </button>
     )
 }
 
