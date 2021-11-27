@@ -1,22 +1,10 @@
 import './App.css';
+import Orders from './pages/Orders';
+import OrderInfo from './pages/OrderInfo';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Our Website will be the shit
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <OrderInfo/>
   );
 }
 
