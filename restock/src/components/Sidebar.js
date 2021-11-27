@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import SignInWithGoogle from "./SignInWithGoogle";
 
 function Sidebar() {
 
@@ -11,6 +12,11 @@ function Sidebar() {
                 <li><Link to={"/stock"}>Stock</Link></li>
                 <li><Link to={"/orders"}>Orders</Link></li>
             </ul>
+            {/*<div className="bottom-0 absolute pb-4 px-4">*/}
+            {/*    <button onClick={}/>*/}
+            {/*</div>*/}
+            <SignInWithGoogle/>
+
         </div>
     )
 }
