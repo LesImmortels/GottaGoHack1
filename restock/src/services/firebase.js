@@ -62,11 +62,13 @@ class Firebase {
 
             const { displayName, email } = userAuth;
             const timestamp = new Date();
+            const roles = ["user"];
 
             try {
                 await userRef.set({
                     displayName,
                     email,
+                    roles,
                     createdDate: timestamp,
                     ...additionalData,
                 });
