@@ -91,12 +91,13 @@ class Firebase {
     async changeStock({name, increment = 1}) {
         
         const userRef = this.firestore.doc(`stocks/${firebase.auth().currentUser.uid}`);
-        const data = await userRef.get().products;
+        const data = await (await userRef.get()).data().products;
         let i = this.findArrayElementByTitle(data, name);
-        data[i].quantity += increment;
+        console.log(increment)
+        data[i].quantity = Number(data[i].quantity) + increment;
 
         try {
-            await userRef.set({data})
+            await userRef.set({products: data})
         } catch (err) {
             console.log(err);
 
@@ -112,8 +113,8 @@ class Firebase {
             try {
                 await userRef.set({products:[{
                     name,
-                    price,
-                    quantity,
+                    price:Number(price),
+                    quantity:Number(quantity),
                     url,
                 }]});
             } catch (err) {
@@ -124,8 +125,8 @@ class Firebase {
                 await userRef.update({
                     products: firebase.firestore.FieldValue.arrayUnion({
                         name,
-                        price,
-                        quantity,
+                        price:Number(price),
+                        quantity:Number(quantity),
                         url,
                     })
                 })
