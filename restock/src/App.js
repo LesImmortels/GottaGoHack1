@@ -4,11 +4,13 @@ import Dashboard from "./pages/Dashboard";
 import Sidebar from "./components/Sidebar";
 import Orders from "./pages/Orders";
 import Stocks from "./pages/Stocks";
+import Map from "./components/Map";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkUserSession } from "./redux/User/user.actions";
 import WithAuth from "./utils/withAuth";
 import MemberAuth from "./utils/memberAuth";
+import UserAuth from "./utils/userAuth";
 import OrderInfo from "./pages/OrderInfo";
 import Homepage from "./pages/Homepage";
 
@@ -59,6 +61,15 @@ function App(props) {
             }
           />
           <Route exact path="/orders/:id" element={<OrderInfo />} />
+          <Route
+            exact
+            path="/map"
+            element={
+              <UserAuth>
+                <Map />
+              </UserAuth>
+            }
+          />
         </Routes>
       </div>
     </div>
