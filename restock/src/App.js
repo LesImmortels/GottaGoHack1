@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Sidebar from "./components/Sidebar";
 import Orders from "./pages/Orders";
 import Stocks from "./pages/Stocks";
+import Sales from "./pages/Sales";
 import { Map, Shops } from "./pages/Maps";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -39,6 +40,15 @@ function App(props) {
             element={
               <MemberAuth>
                 <Stocks />
+              </MemberAuth>
+            }
+          />
+          <Route
+            exact
+            path="/sales"
+            element={
+              <MemberAuth>
+                <Sales />
               </MemberAuth>
             }
           />

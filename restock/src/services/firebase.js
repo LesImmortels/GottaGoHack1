@@ -37,6 +37,16 @@ class Firebase {
         }
         return [];
     }
+
+    getSales = async () => {
+        const ref = this.firestore.collection("sales").doc(firebase.auth().currentUser.uid);
+        const snapshot = await ref.get();
+        if (snapshot.exists) {
+            return snapshot.data().products;
+        }
+        return [];
+    }
+
     getShops = async () => {
         const ref = this.firestore.collection("shops").doc(firebase.auth().currentUser.uid);
         const snapshot = await ref.get();
@@ -96,9 +106,27 @@ class Firebase {
         })
     }
 
+
     async changeStock({ name, increment = 1 }) {
 
         const userRef = this.firestore.doc(`stocks/${firebase.auth().currentUser.uid}`);
+        const data = await (await userRef.get()).data().products;
+        let i = this.findArrayElementByTitle(data, name);
+        console.log(increment)
+        data[i].quantity = Number(data[i].quantity) + increment;
+
+        try {
+            await userRef.set({ products: data })
+        } catch (err) {
+            console.log(err);
+
+        }
+        return userRef
+    }
+
+    async changeSales({ name, increment = 1 }) {
+
+        const userRef = this.firestore.doc(`sales/${firebase.auth().currentUser.uid}`);
         const data = await (await userRef.get()).data().products;
         let i = this.findArrayElementByTitle(data, name);
         console.log(increment)
@@ -147,7 +175,44 @@ class Firebase {
         }
         return userRef;
     }
+    async addProductToSales({ name, price, url, quantity }) {
+
+        const userRef = this.firestore.doc(`sales/${firebase.auth().currentUser.uid}`);
+        const snapshot = await userRef.get();
+        if (!snapshot.exists) {
+            try {
+                await userRef.set({
+                    products: [{
+                        name,
+                        price: Number(price),
+                        quantity: Number(quantity),
+                        url,
+                    }]
+                });
+            } catch (err) {
+                console.log(err)
+            }
+        } else {
+            try {
+                await userRef.update({
+                    products: firebase.firestore.FieldValue.arrayUnion({
+                        name,
+                        price: Number(price),
+                        quantity: Number(quantity),
+                        url,
+                    })
+                })
+            } catch (err) {
+                console.log(err);
+
+            }
+        }
+        return userRef;
+    }
 }
+
+
+
 
 const firebaseInstance = new Firebase();
 export default firebaseInstance;
