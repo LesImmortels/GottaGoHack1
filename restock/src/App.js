@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import Sidebar from "./components/Sidebar";
 import Orders from "./pages/Orders";
 import Stocks from "./pages/Stocks";
+import OrderInfo from './pages/OrderInfo';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { checkUserSession } from "./redux/User/user.actions";
@@ -30,6 +31,7 @@ function App(props) {
           {/* <Route exact path="/" component={Home}/> */}
           <Route exact path="/stock" element={<Stocks />} />
           <Route exact path="/orders" element={<Orders />} />
+          <Route exact path="/orders/orderinfo/:id" element={<OrderInfo />} />
           <Route exact path="/" element={<Dashboard />} />
         </Routes>
       </div>
