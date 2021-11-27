@@ -4,7 +4,7 @@ import OrderInfo from './pages/OrderInfo';
 
 function App() {
   return (
-    <OrderInfo/>
+    <Orders/>
   );
 }
 

@@ -7,13 +7,13 @@ function OrderInfo() {
    ]
 
     return (
-        <div className="px-16" >
+        <table class="items-center bg-transparent w-full border-collapse ">
             <thead>
                 <tr>
-                    <th>Product</th>
-                    <th>Seller</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
+                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Product</th>
+                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Seller</th>
+                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Quantity</th>
+                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">Price</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,7 +23,7 @@ function OrderInfo() {
                 )
             })}
             </tbody>
-        </div>
+        </table>
     )
 }
 
