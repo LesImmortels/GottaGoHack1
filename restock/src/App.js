@@ -10,6 +10,7 @@ import {checkUserSession} from "./redux/User/user.actions";
 import WithAuth from "./utils/withAuth";
 import MemberAuth from "./utils/memberAuth";
 import OrderInfo from './pages/OrderInfo';
+import User from './components/User';
 
 
 const mapState = (state) => ({
@@ -29,7 +30,10 @@ function App(props) {
     <div className="flex flex-row h-screen">
       {/* Side bar here */}
       <Sidebar />
-      <div className="w-full">
+      <div className="absolute right-0">
+        <User/>
+      </div>
+      <div className="w-full pt-10">
         <Routes>
           {/* <Route exact path="/" component={Home}/> */}
             <Route exact path="/stock"
