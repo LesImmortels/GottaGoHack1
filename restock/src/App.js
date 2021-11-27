@@ -7,6 +7,7 @@ import Stocks from "./pages/Stocks";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {checkUserSession} from "./redux/User/user.actions";
+import User from './components/User';
 
 const mapState = (state) => ({
     currentUser: state.user.currentUser,
@@ -24,7 +25,10 @@ function App(props) {
     <div className="flex flex-row h-screen">
       {/* Side bar here */}
         <Sidebar/>
-      <div className="w-full">
+        <div className="absolute right-0">
+          <User/>
+        </div>
+      <div className="w-full pt-10">
         <Routes>
           {/* <Route exact path="/" component={Home}/> */}
             <Route exact path="/stock" element={<Stocks/>}/>

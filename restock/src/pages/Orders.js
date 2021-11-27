@@ -9,7 +9,7 @@ function Orders( { user }) {
 
     return (
         <div>
-            <User user="user"/>
+            
             <table className="items-center bg-transparent w-full border-collapse ">
                 <thead className="bg-gray-200">
                     <tr>
