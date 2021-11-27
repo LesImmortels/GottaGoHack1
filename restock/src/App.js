@@ -28,10 +28,11 @@ function App(props) {
   }, []);
 
   return (
-    <div className="flex flex-row h-screen font">
+    <div className="flex flex-row h-screen font ">
       {/* Side bar here */}
       <Sidebar />
-      <div className="w-full pt-10">
+
+      <div className="w-full pt-10 h-screen overflow-y-scroll">
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route
