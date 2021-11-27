@@ -15,7 +15,7 @@ function Stocks() {
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-gray-100">
+                <tr>
                     <th colspan="3" class="px-6 text-gray-500 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap"><button class="font-bold">Add Product</button></th>
                 </tr>
                 {stocks.map((el, i) => <StockProduct name={el.name} link={el.link} quantity={el.quantity} key={i}/>)}
