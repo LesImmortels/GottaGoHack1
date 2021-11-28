@@ -9,6 +9,7 @@ function Sales() {
         quantity: 0,
         price: 0,
         url: "",
+        date: ""
     });
     const [sales, setSales] = useState([]);
 
@@ -31,6 +32,7 @@ function Sales() {
             quantity: 0,
             price: 0,
             url: "",
+            date: ""
         });
     };
 
@@ -52,6 +54,9 @@ function Sales() {
                             </th>
                             <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                                 Quantity
+                            </th>
+                            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                                Date
                             </th>
                         </tr>
                     </thead>
@@ -200,6 +205,7 @@ function Sales() {
                                 price={el.price}
                                 link={el.url}
                                 quantity={el.quantity}
+                                date={el.date}
                                 key={i}
                             />
                         ))}

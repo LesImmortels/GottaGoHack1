@@ -221,6 +221,7 @@ class Firebase {
         const snapshot = await userRef.get();
         if (!snapshot.exists) {
             try {
+                let date = Date.now();
                 await userRef.set({
                     products: [
                         {
@@ -228,6 +229,7 @@ class Firebase {
                             price: Number(price),
                             quantity: Number(quantity),
                             url,
+                            date: `${date.getDate()} ${date.toLocaleString('default', { month: 'short' }).toLowerCase()} ${date.getFullYear()}`
                         },
                     ],
                 });
