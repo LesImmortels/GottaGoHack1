@@ -24,7 +24,7 @@ function Mymap() {
     return (
         <GoogleMap
             defaultZoom={18}
-            defaultCenter={{ Latitude: 48.815563, Longitude: 2.362965 }}
+            defaultCenter={{ lat: 48.815563, lng: 2.362965 }}
             defaultOptions={{ styles: mapStyles.hiding }}
         >
             {shops.map((shop) => (
@@ -33,9 +33,9 @@ function Mymap() {
                         lat: shop.coords.latitude,
                         lng: shop.coords.longitude
                     }}
-                    // onClick={() => {
-                    //     setSelectedShop(shop);
-                    // }}
+                // onClick={() => {
+                //     setSelectedShop(shop);
+                // }}
                 />))}
             {/* {selectedShop && (
                 <InfoWindow
@@ -62,8 +62,7 @@ export default function Map() {
     return (
         <div style={{ height: '50%', width: '100%', position: 'relative' }}>
             <MapWrapped
-                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY
-                    }`}
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `100%` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
