@@ -53,10 +53,10 @@ function Sales() {
                                 Link
                             </th>
                             <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
-                                Quantity
+                                Date
                             </th>
                             <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
-                                Date
+                                Quantity
                             </th>
                         </tr>
                     </thead>
