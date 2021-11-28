@@ -14,6 +14,7 @@ import MemberAuth from "./utils/memberAuth";
 import UserAuth from "./utils/userAuth";
 import OrderInfo from "./pages/OrderInfo";
 import Homepage from "./pages/Homepage";
+import ShopInfo from "./pages/ShopInfo";
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -72,6 +73,8 @@ function App(props) {
             }
           />
           <Route exact path="/orders/:id" element={<OrderInfo />} />
+          <Route exact path="/shop/:id" element={<ShopInfo />} />
+
           <Route
             exact
             path="/map"

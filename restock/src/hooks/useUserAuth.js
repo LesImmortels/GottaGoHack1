@@ -24,7 +24,7 @@ const useUserAuth = (props) => {
 export const isUser = (currentUser) => {
     if (!currentUser || !Array.isArray(currentUser.roles)) return false;
     const { roles } = currentUser;
-    return !!(roles.includes("User") || roles.includes("admin"));
+    return !!(roles.includes("user") || roles.includes("admin"));
 
 };
 

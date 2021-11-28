@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     withGoogleMap,
     withScriptjs,
@@ -7,43 +7,41 @@ import {
     InfoWindow
 } from "react-google-maps";
 import mapStyles from "./mapStyles";
+import firebaseInstance from "../services/firebase";
 
 function Mymap() {
-    const [selectedShop, setSelectedShop] = useState(null);
-    let shops = [{
-        name: "KB",
-        coords: {
-            lat: 48.815563,
-            lng: 2.362965
-        }
-    }, {
-        name: "VJ",
-        coords: {
-            lat: 48.797646,
-            lng: 2.357123
-        }
-    },]
+    // const [selectedShop, setSelectedShop] = useState(null);
+    const [shops, setShop] = useState([]);
+
+    useEffect(() => {
+        let data = firebaseInstance.getShops();
+        data.then((res) => {
+            console.log(res);
+            setShop(res);
+        });
+    }, []);
+
     return (
         <GoogleMap
             defaultZoom={18}
-            defaultCenter={{ lat: 48.815563, lng: 2.362965 }}
+            defaultCenter={{ Latitude: 48.815563, Longitude: 2.362965 }}
             defaultOptions={{ styles: mapStyles.hiding }}
         >
             {shops.map((shop) => (
                 <Marker key={shop.name}
                     position={{
-                        lat: shop.coords.lat,
-                        lng: shop.coords.lng
+                        lat: shop.coords.latitude,
+                        lng: shop.coords.longitude
                     }}
-                    onClick={() => {
-                        setSelectedShop(shop);
-                    }}
+                    // onClick={() => {
+                    //     setSelectedShop(shop);
+                    // }}
                 />))}
-            {selectedShop && (
+            {/* {selectedShop && (
                 <InfoWindow
                     position={{
-                        lat: selectedShop.coords.lat,
-                        lng: selectedShop.coords.lng
+                        lat: selectedShop.coords.latitude,
+                        lng: selectedShop.coords.longitude
                     }}
                     onCloseClick={() => {
                         setSelectedShop(null);
@@ -53,7 +51,7 @@ function Mymap() {
                         Shop details
                     </div>
                 </InfoWindow>
-            )}
+            )} */}
         </GoogleMap>
     );
 }
