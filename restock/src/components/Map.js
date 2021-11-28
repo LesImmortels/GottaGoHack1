@@ -20,11 +20,20 @@ function Mymap() {
         });
     }, []);
 
+    const [mapsetting, setMapsetting] = useState([]);
+
+    useEffect(() => {
+        let data = firebaseInstance.getMapsetting();
+        data.then((res) => {
+            setMapsetting(res);
+        });
+    }, []);
+
     return (
         <GoogleMap
             defaultZoom={18}
             defaultCenter={{ lat: 48.815563, lng: 2.362965 }}
-            defaultOptions={{ styles: mapStyles.hiding }}
+            defaultOptions={{ styles: mapStyles[mapsetting] }}
         >
             {shops.map((shop) => (
                 <Marker key={shop.name}

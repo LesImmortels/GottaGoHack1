@@ -1,5 +1,16 @@
-let mapStyles = {
-  default: [
+let mapStyles = [
+  [
+    {
+      featureType: "poi.business",
+      stylers: [{ visibility: "off" }],
+    },
+    {
+      featureType: "transit",
+      elementType: "labels.icon",
+      stylers: [{ visibility: "off" }],
+    },
+  ],
+  [
     {
       featureType: "water",
       elementType: "geometry",
@@ -128,7 +139,7 @@ let mapStyles = {
       ]
     }
   ],
-  silver: [
+  [
     {
       elementType: "geometry",
       stylers: [{ color: "#f5f5f5" }],
@@ -216,7 +227,7 @@ let mapStyles = {
       stylers: [{ color: "#9e9e9e" }],
     },
   ],
-  night: [
+  [
     { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
     { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
     { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
@@ -296,7 +307,7 @@ let mapStyles = {
       stylers: [{ color: "#17263c" }],
     },
   ],
-  retro: [
+  [
     { elementType: "geometry", stylers: [{ color: "#ebe3cd" }] },
     { elementType: "labels.text.fill", stylers: [{ color: "#523735" }] },
     { elementType: "labels.text.stroke", stylers: [{ color: "#f5f1e6" }] },
@@ -406,19 +417,9 @@ let mapStyles = {
       stylers: [{ color: "#92998d" }],
     },
   ],
-  hiding: [
-    {
-      featureType: "poi.business",
-      stylers: [{ visibility: "off" }],
-    },
-    {
-      featureType: "transit",
-      elementType: "labels.icon",
-      stylers: [{ visibility: "off" }],
-    },
-  ],
 
 
-};
+
+];
 
 export default mapStyles

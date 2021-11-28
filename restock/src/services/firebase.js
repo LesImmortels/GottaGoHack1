@@ -19,6 +19,24 @@ class Firebase {
     }
     signOut = () => this.auth.signOut();
 
+    getMapsetting = async (id) => {
+        if (typeof id === "undefined") {
+            if (!firebase.auth().currentUser) {
+                return 0;
+            }
+            id = firebase.auth().currentUser.uid;
+        }
+        const ref = this.firestore
+            .collection("user")
+            .doc(id);
+        const snapshot = await ref.get();
+        if (snapshot.exists) {
+            return snapshot.data().mapsetting;
+        }
+        return [];
+    };
+
+
     getUserDashboard = (id) =>
         this.firestore.collection("dashboards").doc(id).get();
     getUserData = (id) => this.firestore.collection("users").doc(id).get();
@@ -96,6 +114,7 @@ class Firebase {
                     email,
                     roles,
                     createdDate: timestamp,
+                    mapsetting: 0,
                     answered: false,
                     ...additionalData,
                 });
