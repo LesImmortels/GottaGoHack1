@@ -34,22 +34,20 @@ class Firebase {
         return [];
     };
     getShops = async () => {
-        if (!firebase.auth().currentUser) return;
-        const ref = this.firestore
-            .collection("shops")
-            .doc(firebase.auth().currentUser.uid);
-        const snapshot = await ref.get();
-        if (snapshot.exists) {
-            return snapshot.data().shops;
-        }
-        return [];
+        const snapshot = await firebase.firestore().collection('shops').get()
+        return snapshot.docs.map(doc => doc.data());
     };
 
-    getStocks = async () => {
-        if (!firebase.auth().currentUser) return;
+    getStocks = async (id) => {
+        if (typeof id === "undefined") {
+            if (!firebase.auth().currentUser) {
+                return [];
+            }
+            id = firebase.auth().currentUser.uid;
+        }
         const ref = this.firestore
             .collection("stocks")
-            .doc(firebase.auth().currentUser.uid);
+            .doc(id);
         const snapshot = await ref.get();
         if (snapshot.exists) {
             return snapshot.data().products;
@@ -94,6 +92,7 @@ class Firebase {
                     email,
                     roles,
                     createdDate: timestamp,
+                    answered: false,
                     ...additionalData,
                 });
             } catch (err) { }
@@ -133,6 +132,26 @@ class Firebase {
         }
         return userRef;
     }
+
+    async changeRecommendedStock({id,name, increment}) {
+        const userRef = this.firestore.doc(
+            `stocks/${id}`
+        );
+
+        const data = await (await userRef.get()).data().products;
+        let i = this.findArrayElementByTitle(data, name);
+        data[i].demand = Number(data[i].demand) + increment;
+
+        if (data[i].demand <= 0)
+            data[i].demand = 0;
+        try {
+            await userRef.set({ products: data });
+        } catch (err) {
+            console.log(err);
+        }
+        return userRef;
+    }
+
     async changeSales({ name, increment = 1 }) {
         const userRef = this.firestore.doc(
             `sales/${firebase.auth().currentUser.uid}`
@@ -190,6 +209,7 @@ class Firebase {
                             price: Number(price),
                             quantity: Number(quantity),
                             url,
+                            demand: Number(0)
                         },
                     ],
                 });
@@ -204,6 +224,7 @@ class Firebase {
                         price: Number(price),
                         quantity: Number(quantity),
                         url,
+                        demand: Number(0)
                     }),
                 });
             } catch (err) {
@@ -250,6 +271,22 @@ class Firebase {
         }
         return userRef;
     }
+
+    async answer({id}) {
+        const userRef = this.firestore.doc(
+            `users/${id}`
+        );
+        const snapshot = await userRef.get();
+        try {
+            await userRef.update({
+                answered: true,
+            });
+        } catch (err) {
+            console.log(err);
+        }
+        return userRef;
+    }
+    
 }
 
 

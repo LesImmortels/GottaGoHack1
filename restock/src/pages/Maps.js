@@ -1,24 +1,20 @@
 import Map from "../components/Map";
 
 
-import Shoplist from "../components/Shoplist";
+import Shop from "../components/Shop";
 import { Popover, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import firebaseInstance from "../services/firebase";
 
-
-
 export function Maps() {
-
     return (
         <Map />
     );
 }
 
-
-
-
 export function Shops() {
+
     const [formData, setFormData] = useState({
         name: "",
         address: "",
@@ -29,10 +25,12 @@ export function Shops() {
     useEffect(() => {
         let data = firebaseInstance.getShops();
         data.then((res) => {
+            console.log(res);
             setShops(res);
         });
-    }, [shops]);
+    }, []);
 
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         firebaseInstance.addProductToStock(formData);
@@ -66,14 +64,15 @@ export function Shops() {
                         </tr>
                     </thead>
                     <tbody>
-                        {shops.map((shop, i) => (
-                            <Shoplist
-                                name={shop.name}
-                                address={shop.address}
-                                link={shop.url}
-                                key={i}
-                            />
-                        ))}
+                        {shops && shops.map((shop, i) => {
+                            console.log(shop)
+                            return (
+                                <Shop
+                                    shop={shop}
+                                    key={i}
+                                />
+                            )
+                        })}
                     </tbody>
                 </table>
             </div>

@@ -168,7 +168,7 @@ function OrderInfo() {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => {
+            {products && products.map((product) => {
               return <ProductInfo product={product} />;
             })}
           </tbody>
