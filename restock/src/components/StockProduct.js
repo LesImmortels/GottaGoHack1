@@ -1,7 +1,7 @@
 //import { useEffect } from "react";
 import firebaseInstance from "../services/firebase";
 
-function StockProduct({ name, price, link, quantity }) {
+function StockProduct({ name, price, link, quantity, demand}) {
     function handleIncrement(increment = 1) {
         firebaseInstance.changeStock({ name, increment })
     }
@@ -14,6 +14,7 @@ function StockProduct({ name, price, link, quantity }) {
             <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">{price} €</th>
             <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left"><a href={link}>{link}</a></th>
             {/* <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left"><a href={link}>{/(?:[\w-]+\.)+[\w-]+/.exec(link)[0]}</a></th> */}
+            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">{demand}</th>
             <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left"><button onClick={() => handleIncrement(1)} class="text-green-500 mx-2 w-5 h-5 text-m bg-white border-gray-500 border rounded-full">+</button>{quantity}<button onClick={() => handleIncrement(-1)} class="text-red-500 mx-2 w-5 h-5 text-m bg-white border-gray-500 border rounded-full">-</button></th>
             <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left"><button onClick={() => removeStock()} class="mx-2 w-5 h-5bg-white border-gray-500 border rounded-full">
                 <svg height="19" width="19" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
