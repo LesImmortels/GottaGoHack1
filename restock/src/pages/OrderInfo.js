@@ -1,29 +1,37 @@
 import ProductInfo from "../components/ProductInfo";
 import React, { Fragment, useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import firebaseInstance from "../services/firebase";
 
-function OrderInfo() {
-    let { id } = useParams();
+const mapState = (state) => ({
+    currentUser: state.user.currentUser,
+});
 
-    const [orders, setOrders] = useState([]);
-
-    useEffect(() => {
-        let data = firebaseInstance.getOrders();
-        data.then((res) => {
-            setOrders(res);
-        });
-    }, [orders]);
-
-    let order;
+function getProducts(orders, id) {
+    if (!orders) return [];
     for (let i = 0; i < orders.length; i++) {
-        if (orders[i].id === id) {
-            order = orders[i];
-            break;
+        if (orders[i].id == id) {
+            return orders[i].products;
         }
     }
+    return [];
+}
 
-    let products = order.products;
+function OrderInfo() {
+    let { id } = useParams();
+    const { currentUser } = useSelector(mapState);
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        if (currentUser != null) {
+            let data = firebaseInstance.getOrders(currentUser.id);
+            data.then((res) => {
+                setProducts(() => getProducts(res, id));
+            });
+        }
+    }, [currentUser, id]);
 
     return (
         <div className="w-full h-full px-24">

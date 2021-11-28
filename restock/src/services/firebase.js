@@ -22,11 +22,16 @@ class Firebase {
     getUserDashboard = (id) =>
         this.firestore.collection("dashboards").doc(id).get();
     getUserData = (id) => this.firestore.collection("users").doc(id).get();
-    getOrders = async () => {
-        if (!firebase.auth().currentUser) return;
+    getOrders = async (id) => {
+        if (typeof id === "undefined") {
+            if (!firebase.auth().currentUser) {
+                return [];
+            }
+            id = firebase.auth().currentUser.uid;
+        }
         const ref = this.firestore
             .collection("orders")
-            .doc(firebase.auth().currentUser.uid);
+            .doc(id);
         const snapshot = await ref.get();
         if (snapshot.exists) {
             return snapshot.data().orders;
