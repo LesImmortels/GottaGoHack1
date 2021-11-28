@@ -25,7 +25,6 @@ export function Shops() {
     useEffect(() => {
         let data = firebaseInstance.getShops();
         data.then((res) => {
-            console.log(res);
             setShops(res);
         });
     }, []);
@@ -49,23 +48,22 @@ export function Shops() {
         <div className="w-full h-full px-24">
             <Map />
             <div className="pt-4 ">
-                <table class="items-center bg-transparent w-full border-collapse">
-                    <thead class="bg-gradient-to-r from-green-400 to-green-500 text-white shadow-lg">
+                <table className="items-center bg-transparent w-full border-collapse">
+                    <thead className="bg-gradient-to-r from-green-400 to-green-500 text-white shadow-lg">
                         <tr>
-                            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                                 Name
                             </th>
-                            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                                 Address
                             </th>
-                            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                                 Link
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         {shops && shops.map((shop, i) => {
-                            console.log(shop)
                             return (
                                 <Shop
                                     shop={shop}

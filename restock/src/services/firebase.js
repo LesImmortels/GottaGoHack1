@@ -125,7 +125,6 @@ class Firebase {
     );
     const data = await (await userRef.get()).data().products;
     let i = this.findArrayElementByTitle(data, name);
-    console.log(increment);
     data[i].quantity = Number(data[i].quantity) + increment;
     if (data[i].quantity <= 0) data.splice(i, 1);
     try {
@@ -158,7 +157,6 @@ class Firebase {
     );
     const data = await (await userRef.get()).data().products;
     let i = this.findArrayElementByTitle(data, name);
-    console.log(increment);
     data[i].quantity = Number(data[i].quantity) + increment;
     if (data[i].quantity <= 0) data.splice(i, 1);
     try {

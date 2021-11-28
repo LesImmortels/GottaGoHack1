@@ -38,7 +38,7 @@ const useMemberAuth = (props) => {
     if (!authentication.initializing && !authentication.authenticated) {
       navigate("/");
     }
-  }, [authentication]);
+  }, [authentication, navigate]);
 
   return currentUser;
 };

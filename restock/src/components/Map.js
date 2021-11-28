@@ -16,7 +16,6 @@ function Mymap() {
     useEffect(() => {
         let data = firebaseInstance.getShops();
         data.then((res) => {
-            console.log(res);
             setShop(res);
         });
     }, []);

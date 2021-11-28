@@ -41,7 +41,7 @@ const useAuth = () => {
             history.push("/login");
         }
 
-    }, [authentication]);
+    }, [authentication, history]);
 
     return currentUser;
 };

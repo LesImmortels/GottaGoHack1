@@ -9,15 +9,11 @@ function ShopInfo() {
     const [stocks, setStocks] = useState([]);
 
     useEffect(() => {
-        console.log(id);
         let data = firebaseInstance.getStocks( id );
-        console.log(data);
         data.then((res) => {
             setStocks(res);
-            console.log(res);
-
         });
-    }, []);
+    }, [id]);
 
     if (stocks === undefined) {
         return <>Still loading...</>;
@@ -28,19 +24,19 @@ function ShopInfo() {
         <h1 className="font-black  text-3xl">What do you usually get?</h1>
         <p>Answer this quick survey to help reduce food waste, and get discounts on your favourite shops.</p>
         <div className="pt-4 ">
-            <table class="items-center bg-transparent w-full border-collapse">
-                <thead class="bg-gradient-to-r from-green-400 to-green-500 text-white shadow-lg">
+            <table className="items-center bg-transparent w-full border-collapse">
+                <thead className="bg-gradient-to-r from-green-400 to-green-500 text-white shadow-lg">
                     <tr>
-                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                        <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                             Name
                         </th>
-                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                        <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                             Price
                         </th>
-                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                        <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                             Link
                         </th>
-                        <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                        <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                             Interested?
                         </th>
                         <th></th>

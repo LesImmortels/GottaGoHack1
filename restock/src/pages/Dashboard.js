@@ -104,7 +104,7 @@ function Dashboard() {
         setData(createData(res.data().data));
       }
     });
-  }, [data]);
+  }, [currentUser.id]);
 
   useEffect(() => {
     let data = firebaseInstance.getStocks();
@@ -120,15 +120,14 @@ function Dashboard() {
         setStock(res);
       }
     });
-  }, [stock]);
+  }, []);
 
-  console.log(stock);
   return (
     <>
       <div className="w-full h-screen px-24">
         <h1 className="font-black  text-3xl">Dashboard</h1>
 
-        <h1 class=" mt-24 mb-2 font-bold text-lg underline">
+        <h1 className=" mt-24 mb-2 font-bold text-lg underline">
           Predicting probable demands :
         </h1>
         <div className="flex flex-row items-center  justify-center  rounded-2xl my-4 p-2 bg-green-50 h-4/6">
@@ -171,7 +170,7 @@ function Dashboard() {
           )}
         </div>
 
-        <h1 class=" mt-24 mb-2 font-bold text-lg underline">
+        <h1 className=" mt-24 mb-2 font-bold text-lg underline">
           Predicting probable money savings :
         </h1>
         <div className="flex flex-row items-center  justify-center  rounded-2xl my-4 p-2 bg-yellow-100 h-4/6">
@@ -227,7 +226,6 @@ function Dashboard() {
                     value,
                     index,
                   }) => {
-                    console.log("handling label?");
                     const RADIAN = Math.PI / 180;
                     // eslint-disable-next-line
                     const radius =

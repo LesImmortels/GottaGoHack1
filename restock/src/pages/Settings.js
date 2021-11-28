@@ -23,7 +23,6 @@ function Settings() {
 
   function changeName(e) {
     e.preventDefault();
-    console.log("bye");
     dispatch(changeNameStart(newName));
   }
   return (

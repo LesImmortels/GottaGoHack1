@@ -40,22 +40,22 @@ function Sales() {
         <div className="w-full h-full px-24">
             <h1 className="font-black  text-3xl">Sales</h1>
             <div className="pt-4 ">
-                <table class="items-center bg-transparent w-full border-collapse">
-                    <thead class="bg-gradient-to-r from-green-400 to-green-500 text-white shadow-lg">
+                <table className="items-center bg-transparent w-full border-collapse">
+                    <thead className="bg-gradient-to-r from-green-400 to-green-500 text-white shadow-lg">
                         <tr>
-                            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                                 Name
                             </th>
-                            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                                 Price
                             </th>
-                            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                                 Link
                             </th>
-                            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                                 Quantity
                             </th>
-                            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
+                            <th className="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap text-left">
                                 Date
                             </th>
                         </tr>
@@ -64,7 +64,7 @@ function Sales() {
                         <tr>
                             <th
                                 colspan="5"
-                                class="px-6 text-gray-500 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap"
+                                className="px-6 text-gray-500 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap"
                             >
                                 <Popover className="relative">
                                     {({ open }) => (
