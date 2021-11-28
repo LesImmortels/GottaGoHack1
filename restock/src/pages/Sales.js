@@ -63,7 +63,7 @@ function Sales() {
                     <tbody>
                         <tr>
                             <th
-                                colspan="4"
+                                colspan="5"
                                 class="px-6 text-gray-500 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap"
                             >
                                 <Popover className="relative">

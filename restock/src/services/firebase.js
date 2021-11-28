@@ -33,6 +33,7 @@ class Firebase {
         }
         return [];
     };
+
     getShops = async () => {
         const snapshot = await firebase.firestore().collection('shops').get()
         return snapshot.docs.map(doc => doc.data());
@@ -133,7 +134,7 @@ class Firebase {
         return userRef;
     }
 
-    async changeRecommendedStock({id,name, increment}) {
+    async changeRecommendedStock({ id, name, increment }) {
         const userRef = this.firestore.doc(
             `stocks/${id}`
         );
@@ -274,7 +275,7 @@ class Firebase {
         return userRef;
     }
 
-    async answer({id}) {
+    async answer({ id }) {
         const userRef = this.firestore.doc(
             `users/${id}`
         );
@@ -288,7 +289,7 @@ class Firebase {
         }
         return userRef;
     }
-    
+
 }
 
 
