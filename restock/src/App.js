@@ -15,6 +15,7 @@ import UserAuth from "./utils/userAuth";
 import OrderInfo from "./pages/OrderInfo";
 import Homepage from "./pages/Homepage";
 import ShopInfo from "./pages/ShopInfo";
+import Settings from "./pages/Settings";
 
 const mapState = (state) => ({
   currentUser: state.user.currentUser,
@@ -82,6 +83,24 @@ function App(props) {
               <UserAuth>
                 <Shops />
               </UserAuth>
+            }
+          />
+          <Route
+            exact
+            path="/settings"
+            element={
+              <UserAuth>
+                <Settings />
+              </UserAuth>
+            }
+          />
+          <Route
+            exact
+            path="/settings"
+            element={
+              <MemberAuth>
+                <Settings />
+              </MemberAuth>
             }
           />
         </Routes>
