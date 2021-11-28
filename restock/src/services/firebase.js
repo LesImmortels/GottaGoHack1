@@ -19,7 +19,6 @@ class Firebase {
   }
   signOut = () => this.auth.signOut();
 
-<<<<<<< HEAD
     getUserDashboard = (id) =>
         this.firestore.collection("dashboards").doc(id).get();
     getUserData = (id) => this.firestore.collection("users").doc(id).get();
@@ -39,22 +38,6 @@ class Firebase {
         }
         return [];
     };
-=======
-  getUserDashboard = (id) =>
-    this.firestore.collection("dashboards").doc(id).get();
-  getUserData = (id) => this.firestore.collection("users").doc(id).get();
-  getOrders = async () => {
-    if (!firebase.auth().currentUser) return;
-    const ref = this.firestore
-      .collection("orders")
-      .doc(firebase.auth().currentUser.uid);
-    const snapshot = await ref.get();
-    if (snapshot.exists) {
-      return snapshot.data().orders;
-    }
-    return [];
-  };
->>>>>>> 451e05886d520fd8056482aa398827b7c47049e1
 
   getShops = async () => {
     const snapshot = await firebase.firestore().collection("shops").get();
