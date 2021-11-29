@@ -186,6 +186,18 @@ class Firebase {
         return userRef;
     }
 
+    async changemapSetting({ newMapsetting }) {
+        const userRef = this.firestore.doc(
+            `users/${firebase.auth().currentUser.uid}`
+        );
+        try {
+            await userRef.set({ mapsetting: newMapsetting });
+        } catch (err) {
+            console.log(err);
+        }
+        return userRef;
+    }
+
     async removeStock({ name }) {
         const userRef = this.firestore.doc(
             `stocks/${firebase.auth().currentUser.uid}`
@@ -319,6 +331,22 @@ class Firebase {
                 .doc(user)
                 .update({
                     displayName: newName,
+                })
+                .then(() => resolve())
+                .catch((err) => {
+                    console.log(err);
+                });
+        });
+    };
+
+    changeMapsetting = (setting) => {
+        return new Promise((resolve, reject) => {
+            let user = firebase.auth().currentUser.uid;
+            this.firestore
+                .collection("users")
+                .doc(user)
+                .update({
+                    mapsetting: setting,
                 })
                 .then(() => resolve())
                 .catch((err) => {

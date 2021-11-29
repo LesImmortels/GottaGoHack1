@@ -7,6 +7,9 @@ import { isUser } from "../hooks/useUserAuth";
 import { Link } from "react-router-dom";
 import firebaseInstance from "../services/firebase";
 import ReactRanger from 'react-ranger'
+import styles from '../components/mapStyles'
+import { Slider } from "@mui/material";
+import Box from '@mui/material/Box';
 
 
 const mapState = ({ user }) => ({
@@ -17,10 +20,6 @@ const mapState = ({ user }) => ({
 const mapStateCurr = (state) => ({
   currentUser: state.user.currentUser,
 });
-
-
-
-
 
 
 
@@ -42,13 +41,14 @@ function Settings() {
     dispatch(changeNameStart(newName));
   }
 
-  const [values, setValues] = React.useState([10])
-
-
   const { currentUser } = useSelector(mapStateCurr);
 
   const [mapsetting, setMapsetting] = useState([]);
 
+  function changeMapSetting(e) {
+    currentUser.mapsetting =
+      dispatch(changeNameStart(newName));
+  }
   useEffect(() => {
     let data = firebaseInstance.getMapsetting();
     data.then((res) => {
@@ -56,13 +56,14 @@ function Settings() {
     });
   }, [currentUser]);
 
-  const { getTrackProps, handles } = useRanger({
-    values,
-    onChange: setValues,
-    min: 0,
-    max: 100,
-    stepSize: 5,
-  })
+  let max = styles.length;
+
+  function setlabel(value) {
+    return `${value}`
+  }
+
+
+
 
 
   return (
@@ -102,19 +103,8 @@ function Settings() {
               <li>
                 <Link
                   to={"/map"}
-                  className="inline-flex hover:text-white transition"
-                >
-                  <svg
-                    className="w-6 h-6 mr-4"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M12 1.586l-4 4v12.828l4-4V1.586zM3.707 3.293A1 1 0 002 4v10a1 1 0 00.293.707L6 18.414V5.586L3.707 3.293zM17.707 5.293L14 1.586v12.828l2.293 2.293A1 1 0 0018 16V6a1 1 0 00-.293-.707z"
-                      fillRule="evenodd"
-                    />
-                  </svg>
+                  className="inline-flex hover:text-white transition">
+
                   <p className="underline-animation cursor-pointer">Map</p>
                 </Link>
               </li>
@@ -126,22 +116,20 @@ function Settings() {
 
 
         <div className="py-4 w-1/2">
-          <input
-            onChange={(e) => setNewName(e.target.value)}
-            value={newName}
-            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-            id="grid-last-name"
-            name="name"
-            type="text"
-            placeholder="John"
-          />
+          <Box sx={{ width: 300 }}>
+            <Slider
+              aria-label="Always visible"
+              defaultValue={mapsetting}
+              getAriaValueText={setlabel}
+              step={1}
+              valueLabelDisplay="on"
+              marks
+              min={0}
+              max={max}
+            />
+          </Box>
         </div>
-        <button
-          onClick={changeName}
-          className="transition  hover:bg-green-400 border-black border rounded  my-2 px-8 py-1.5 font-semibold"
-        >
-          Save
-        </button>
+
       </div>
       <div>
 
